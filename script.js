@@ -174,17 +174,24 @@ Shery.imageEffect("#p3-left", {
 let p4Button = document.querySelector("#page4 button");
 let p4Video = document.querySelector("#page4 video")
 let p4H3 = document.querySelector("#page4 h3");
+let audio = document.querySelector("#page4 audio");
 
 p4Video.playbackRate = 1.5,
 
 p4Button.addEventListener('mouseenter',()=>{
     p4Video.style.opacity = "1";
-    p4Video.muted = false;
+    audio.play();
     p4H3.style.color = "#fff";
 })
 
 p4Button.addEventListener('mouseleave',()=>{
     p4Video.style.opacity = "0";
-    p4Video.muted = true;
+    audio.pause();
     p4H3.style.color = "#000";
 })  
+
+audio.addEventListener('ended', () => {
+  console.log('Audio ended');
+  audio.currentTime = 0; // Reset the audio to the beginning
+  audio.play();
+});
